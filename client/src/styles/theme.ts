@@ -29,20 +29,24 @@ export const Logo = styled.img`
     width: 100px;
 `
 
+export const ButtonTheme = styled.button`
+    background-color: "red";
+`   	
+
 export const MainContainer = styled.div`
-    background-color: ${Light.background};
-    color: ${Light.text};
+    background-color: ${props => props.theme === 'light' ? Light.background : Dark.background};
+    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
     padding: 40px;
     min-height: 100vh;
-    min-width: 100vw;
+    min-width: 100%;
 `
 
 export const SubContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 20px;
-    background-color: ${Light.main};
-    color: ${Light.text};
+    background-color: ${props => props.theme === 'light' ? Light.main : Dark.main};
+    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
     border-radius: 5px;
 
     @media (max-width: 800px) {
@@ -57,14 +61,14 @@ export const TeamContainer = styled.div`
 
 export const Titulo = styled.h1`
     margin-top: 10px;
-    color: ${Light.title};
+    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
     font-size: 1.6rem;
 `
 
 export const Conteudo = styled.p`
     font-size: 1.2rem;
     text-align: justify;
-    color: ${Light.text};
+    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding-top: 5px;
@@ -78,7 +82,7 @@ export const ConteudoMatch = styled.p`
     text-align: center;
     width: 100%;
     font-size: 1.2rem;
-    color: ${Light.text};
+    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
     margin-top: 5px;
 `
 
