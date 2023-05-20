@@ -2,20 +2,26 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 // styles ✨
-import { ButtonTheme, Header, Logo, MainContainer, SubContainer } from '../../styles/theme'
+import { ButtonTheme, Header, Logo, MainContainer, SubContainer, Light, Dark } from '../../styles/theme'
 import '../../styles/general.css'
 
 // components ✨
 import { Right } from '../../components/right'
 import { Left } from '../../components/left'
-import logo from '../../assets/logo.png'
 import { CgDarkMode } from 'react-icons/cg'
+import logo from '../../assets/logo.png'
+import { useContexto } from '../../hooks'
 
 export function Home() {
-    const [theme, setTheme] = useState('light');
+    const { theme, setTheme } = useContexto()
 
     const ThemeChange = () => {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+        if (theme.name === 'light') {
+            setTheme(Dark);
+        }
+        else {
+            setTheme(Light);
+        }
     }
 
     return (
@@ -23,11 +29,12 @@ export function Home() {
             <Header>
                 <Logo src={logo} alt="logo" />
             </Header>
-            <MainContainer theme={theme}>
-                <SubContainer theme={theme}>
+
+            <MainContainer>
+                <SubContainer>
                     <Left />
                     <Right />
-                    
+
                     <div></div>
                     <CgDarkMode onClick={ThemeChange} />
                 </SubContainer>

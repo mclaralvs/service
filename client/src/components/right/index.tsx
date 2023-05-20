@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { Conteudo, TeamContainer, Titulo } from '../../styles/theme'
+import { Conteudo, TeamContainer, Titulo, Checkbox } from '../../styles/theme'
+
+import { ITeam, Props } from '../../types'
+import { useContexto } from '../../hooks'
 
 export function Right() {
-    const [teams, setTeams] = useState([])
+    const { teams, team, setTeam, filteredTeams, setFilteredTeams } = useContexto()
 
-    useEffect(() => {
-        axios.get(`http://localhost:3004/team`).then((res: any) => {
-            setTeams(res.data.sort((a: any, b: any) => {
-                const valueA = a.name.toLowerCase();
-                const valueB = b.name.toLowerCase();
-
-                return valueA.localeCompare(valueB);
-            }
-            ))
-        })
-    })
+    const handleClick = (team_: ITeam) => {
+        if (team_ === team) {
+            setTeam(undefined);
+            setFilteredTeams([]);
+        } else {
+            setTeam(team_);
+            setFilteredTeams([team_]);
+        }
+    };
 
     return (
         <div>
@@ -25,7 +26,18 @@ export function Right() {
             <TeamContainer>
                 {teams.map((team: any) => (
                     <div key={team.id}>
-                        <Conteudo>{team.name}</Conteudo>
+                        <label>
+                            <Conteudo>
+                                <Checkbox
+                                    value={team.id}
+                                    type="checkbox"
+                                    checked={team === filteredTeams[0]} onChange={() => {
+                                        handleClick(team);
+                                    }}
+                                />
+                                {team.name}
+                            </Conteudo>
+                        </label>
                     </div>
                 ))}
             </TeamContainer>

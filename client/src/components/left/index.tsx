@@ -1,11 +1,15 @@
 import { Match } from  '../match';
 
-import { Titulo } from '../../styles/theme';
+import { TituloLeft } from '../../styles/theme';
 
-export function Left () {
+import { useContexto } from '../../hooks';
+
+export function Left () {    
+    const { team } = useContexto()
+    
 	return (
         <div>
-            <Titulo>Partidas</Titulo>
+            <TituloLeft>{team ? `Partidas - ${team.name}` : 'Partidas'}</TituloLeft>
 
             <Match />
         </div>

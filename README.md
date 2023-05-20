@@ -1,4 +1,4 @@
-<h1 align=center>TypeORM ✨</h1>
+<h1 align=center>Service ✨</h1>
 
 ## 🎯 Goals
 <p>The main goal of this activity was to build a React application based on a soccer league.</p>

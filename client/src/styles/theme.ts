@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Match } from '../components/match';
 
 export const Dark = {
     name: "dark",
@@ -31,11 +30,11 @@ export const Logo = styled.img`
 
 export const ButtonTheme = styled.button`
     background-color: "red";
-`   	
+`
 
 export const MainContainer = styled.div`
-    background-color: ${props => props.theme === 'light' ? Light.background : Dark.background};
-    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
+    background-color: ${(props => props.theme.background)};
+    color: ${(props => props.theme.text)};
     padding: 40px;
     min-height: 100vh;
     min-width: 100%;
@@ -45,8 +44,8 @@ export const SubContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 20px;
-    background-color: ${props => props.theme === 'light' ? Light.main : Dark.main};
-    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
+    background-color: ${(props => props.theme.main)};
+    color: ${(props => props.theme.text)};
     border-radius: 5px;
 
     @media (max-width: 800px) {
@@ -61,14 +60,28 @@ export const TeamContainer = styled.div`
 
 export const Titulo = styled.h1`
     margin-top: 10px;
-    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
+    color: ${(props => props.theme.text)};
     font-size: 1.6rem;
+`
+
+export const TituloLeft = styled.h1`
+    margin-top: 10px;
+    color: ${(props => props.theme.text)};
+    font-size: 1.6rem;
+    text-align: center;
+`
+
+export const Checkbox = styled.input`
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    color: #0000;
 `
 
 export const Conteudo = styled.p`
     font-size: 1.2rem;
     text-align: justify;
-    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
+    color: ${(props => props.theme.text)};
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding-top: 5px;
@@ -82,7 +95,7 @@ export const ConteudoMatch = styled.p`
     text-align: center;
     width: 100%;
     font-size: 1.2rem;
-    color: ${props => props.theme === 'light' ? Light.text : Dark.text};
+    color: ${(props => props.theme.text)};
     margin-top: 5px;
 `
 

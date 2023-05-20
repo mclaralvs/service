@@ -1,9 +1,11 @@
-import { Provider } from './contexts';
-import { Home } from './pages/home';
+import { Provider } from "./contexts";
+import { Home } from "./pages/home";
 
 function App() {
 	return (
-		<Home />
+		<Provider>
+			<Home />
+		</Provider>
 	);
 }
 

@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import axios from 'axios'
 
-import { Conteudo, ConteudoMatch, TeamContainer, ContainerMatch, MatchContainer, X, MatchCont } from '../../styles/theme';
+import { ConteudoMatch, TeamContainer, ContainerMatch, MatchContainer, X, MatchCont } from '../../styles/theme';
+
+import { IMatch, LeftProps } from '../../types';
+import { useContexto } from '../../hooks';
 
 export function Match() {
-    const [matches, setMatches] = useState([])
-
-    useEffect(() => {
-        axios.get(`http://localhost:3004/match`).then((res: any) => {
-            const sortedMatches = res.data.sort((a: any, b: any) => {
-                const dateA = parseISO(a.date);
-                const dateB = parseISO(b.date);
-
-                return dateA.getTime() - dateB.getTime();
-            });
-
-            const formattedMatches = sortedMatches.map((match: any) => ({
-                ...match,
-                date: format(parseISO(match.date), 'dd/MM/yyyy'),
-            }));
-
-            setMatches(formattedMatches);
-        })
-    })
+    const { matches } = useContexto()
 
     return (
         <TeamContainer>
